@@ -1,0 +1,24 @@
+---
+interface Props {
+  current?: 'General' | 'Liminal';
+}
+
+const { current } = Astro.props;
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Kuraness, inicio">kuraness</a>
+  <nav aria-label="Navegación principal">
+    <a class="nav-link" href="/">Inicio</a>
+    {
+      current === 'General' ? (
+        <span class="nav-current">General</span>
+      ) : (
+        <a class="nav-link" href="/general/">General</a>
+      )
+    }
+    {
+      current === 'Liminal' && <span class="nav-current">Liminal</span>
+    }
+  </nav>
+</header>
