@@ -1,26 +1,49 @@
 # Kuraness
 
-Sitio estático publicado con GitHub Pages en `kuraness.com`. No requiere instalar nada para editarlo.
+Sitio de Kuraness construido con Astro y publicado en `kuraness.com` mediante GitHub Pages.
 
-## Páginas
+## Requisitos
 
-- `index.html`: portada y tres secciones. Solo General tiene enlace.
-- `general/index.html`: texto de presentación y proyectos.
-- `general/liminal/index.html`: presentación de Liminal, Instagram y collage.
-- `assets/site.css`: colores, tamaños y distribución.
-- `assets/liminal/`: 50 imágenes optimizadas en WebP.
-- `CNAME`: dominio propio. No borrarlo.
+Node 22.23.4 o superior. El proyecto fija la versión exacta en `.nvmrc`.
+
+```bash
+nvm use
+npm install
+```
+
+## Comandos
+
+| Comando | Qué hace |
+| --- | --- |
+| `npm run dev` | Servidor local con recarga en `http://localhost:4321` |
+| `npm run build` | Genera el sitio estático en `dist/` |
+| `npm run preview` | Sirve `dist/` para revisar el resultado real |
+| `npm test` | Compila y comprueba páginas, galería y dominio |
+
+## Estructura
+
+```
+src/
+  layouts/Base.astro            cabecera del documento, metadatos y estilos
+  components/SiteHeader.astro   navegación
+  components/SiteFooter.astro   pie
+  pages/index.astro             portada con las tres secciones
+  pages/general/index.astro     presentación y lista de proyectos
+  pages/general/liminal/        colección visual
+  styles/site.css               colores, tipografía y distribución
+public/
+  CNAME                         dominio propio, no borrar
+  assets/liminal/               50 imágenes WebP
+docs/                           decisiones, sistema visual y recursos
+tests/build.test.mjs            comprobaciones sobre el resultado compilado
+```
 
 ## Editar contenido
 
-En GitHub, abre el archivo, pulsa el icono del lápiz y cambia el texto entre etiquetas HTML. Pulsa **Commit changes** para guardar. GitHub Pages suele publicar el cambio unos minutos después.
+- **Añadir imágenes a Liminal:** deja los `.webp` en `public/assets/liminal/` con numeración de dos dígitos. La galería y los contadores se generan solos a partir de los archivos.
+- **Cambiar textos:** edita la página correspondiente en `src/pages/`.
+- **Añadir un proyecto:** de momento se duplica el bloque `<a class="project-card">` en `src/pages/general/index.astro`. Cuando haya varios proyectos reales se sustituirá por una colección de Markdown.
 
-Para añadir otro proyecto en General, duplica el bloque `<a class="project-card">...</a>` de `general/index.html` y cambia el título, la descripción y el destino del enlace. Las secciones laterales de la portada son decorativas y no tienen enlace.
+## Publicación
 
-Para sustituir o añadir fotos en Liminal, sube archivos WebP a `assets/liminal/` y modifica las entradas `<figure>` en `general/liminal/index.html`. El texto `50 imágenes` y `01 — 50` también se debe actualizar.
-
-El enlace de Instagram está en `general/liminal/index.html` y apunta a `https://www.instagram.com/kkuranes21/`.
-
-## Comprobar localmente
-
-Ejecuta `python3 -m http.server 8000` desde esta carpeta y visita `http://localhost:8000`. Ejecuta `node tests/site.test.mjs` para comprobar enlaces, imágenes y dominio.
+`main` se publica en `kuraness.com`. Los cambios se revisan en local con `npm run dev` antes de subirlos.

@@ -1,0 +1,14 @@
+{
+  "name": "kuraness",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "astro": "^7.4.12"
+  }
+}

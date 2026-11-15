@@ -1,0 +1,50 @@
+---
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../../../layouts/Base.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+
+const galleryDir = join(process.cwd(), 'public', 'assets', 'liminal');
+
+const images = readdirSync(galleryDir)
+  .filter((file) => file.endsWith('.webp'))
+  .sort((a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10));
+
+const total = images.length;
+---
+
+<Base title="Liminal — Kuraness" description="Liminal: una colección visual de Kuraness.">
+  <SiteHeader current="Liminal" />
+  <main class="inner-main">
+    <section class="page-intro liminal-intro">
+      <p class="eyebrow">Proyecto 01 / Archivo visual</p>
+      <h1>Liminal<span class="gold-dot">.</span></h1>
+      <p class="lead">Espacios que parecen familiares, pero se sienten fuera de lugar. Una colección de imágenes para explorar sin prisa.</p>
+      <div class="project-meta">
+        <a class="social-link" href="https://www.instagram.com/kkuranes21/" target="_blank" rel="noopener noreferrer"><span>Ver Instagram · @kkuranes21</span><span aria-hidden="true">↗</span></a>
+        <span class="project-meta-note">{total} imágenes / Colección 01</span>
+      </div>
+    </section>
+    <section aria-labelledby="gallery-title">
+      <div class="section-heading gallery-heading"><h2 id="gallery-title">La colección</h2><span>01 — {total}</span></div>
+      <div class="gallery">
+        {
+          images.map((image, index) => {
+            const number = index + 1;
+            const src = `/assets/liminal/${image}`;
+            return (
+              <figure>
+                <a href={src} target="_blank" rel="noopener" aria-label={`Abrir imagen ${number} de Liminal`}>
+                  <img src={src} alt={`Imagen ${number} de la colección Liminal`} loading="lazy" decoding="async" />
+                </a>
+              </figure>
+            );
+          })
+        }
+      </div>
+    </section>
+    <a class="back-link" href="/general/">← Volver a General</a>
+  </main>
+  <SiteFooter right="Liminal / Archivo visual" />
+</Base>

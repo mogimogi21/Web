@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<Base
+  title="Kuraness — Inicio"
+  description="Kuraness: proyectos, imágenes e ideas."
+  bodyClass="home-page"
+>
+  <main>
+    <header class="home-hero">
+      <p class="eyebrow">Un espacio para explorar</p>
+      <h1>kuraness</h1>
+      <span class="hero-rule" aria-hidden="true"></span>
+    </header>
+    <section class="home-section" aria-label="Secciones de Kuraness">
+      <div class="section-intro"><span>01 / Explora</span><span>Proyectos e ideas</span></div>
+      <div class="home-panels">
+        <div class="section-panel panel-locked panel-left" aria-label="Sección próximamente disponible">
+          <div class="locked-art" aria-hidden="true">?</div><span class="panel-number">01</span><span class="panel-bottom">Próximamente</span>
+        </div>
+        <a class="section-panel panel-general" href="/general/" aria-label="Entrar en General">
+          <div class="general-art" aria-hidden="true"><span>G</span></div>
+          <span class="panel-number">02</span><span class="panel-title">General <span aria-hidden="true">↗</span></span><span class="panel-bottom">Entrar</span>
+        </a>
+        <div class="section-panel panel-locked panel-right" aria-label="Sección próximamente disponible">
+          <div class="locked-art" aria-hidden="true">?</div><span class="panel-number">03</span><span class="panel-bottom">Próximamente</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <SiteFooter right="Un archivo en construcción" />
+</Base>
